@@ -4,5 +4,8 @@
 
 ~~~ bash
 $ bundle install
-$ bundle exec falcon host
+$ bundle exec ./falcon.rb
 ~~~
+
+Visit <http://localhost:3000/>.
+
