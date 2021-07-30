@@ -44,10 +44,10 @@ GEM
     live (0.4.0)
       async-websocket
       trenni
-    lively (0.1.0)
+    lively (0.2.0)
       async-io
       falcon
-      live
+      live (~> 0.4.0)
     localhost (1.1.8)
     mapping (1.1.1)
     nio4r (2.5.7)
