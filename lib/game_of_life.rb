@@ -226,6 +226,7 @@ class GameOfLife < Live::View
 			self.reset
 			self.replace!
 		when 'set'
+			self.stop
 			x = event.dig(:details, :x).to_i
 			y = event.dig(:details, :y).to_i
 			@grid.toggle(x, y)
