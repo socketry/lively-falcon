@@ -163,7 +163,7 @@ class GameOfLife < Live::View
 	def start
 		@update ||= Async do |task|
 			while true
-				task.sleep(1.0/30.0)
+				task.sleep(1.0/5.0)
 				
 				@grid = @grid.step
 				self.replace!
