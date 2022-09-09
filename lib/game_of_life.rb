@@ -245,7 +245,7 @@ class GameOfLife < Live::View
 	end
 	
 	def render(builder)
-		builder.tag('p') do
+		builder.tag('p', {style: 'text-align: center'}) do
 			builder.inline('button', onclick: forward(action: 'start')) do
 				builder.text("Start")
 			end
