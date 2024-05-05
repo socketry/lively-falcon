@@ -51,10 +51,10 @@ class Alphabet < Live::View
 		end
 	end
 	
-	def initialize(id, **data)
-		data[:index] ||= 0
-		
+	def initialize(...)
 		super
+		
+		@data[:index] ||= 0
 	end
 	
 	def index
@@ -67,12 +67,12 @@ class Alphabet < Live::View
 	
 	def handle(event)
 		self.index += 1
-		self.replace!
+		self.update!
 	end
 	
 	def render(builder)
 		builder.tag('p', class: 'toolbar') do
-			builder.inline('button', onclick: forward(action: 'next')) do
+			builder.inline('button', onclick: forward_event(action: 'next')) do
 				builder.text("Next")
 			end
 		end

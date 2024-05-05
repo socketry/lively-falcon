@@ -11,8 +11,8 @@ class Application < Lively::Application
 	end
 	
 	def body
-		GameOfLife.new('game-of-life')
-		# MathQuest.new('math-quest')
-		# Alphabet.new('alphabet')
+		# GameOfLife.new
+		# MathQuest.new
+		Alphabet.new
 	end
 end

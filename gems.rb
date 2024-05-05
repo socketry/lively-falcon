@@ -2,6 +2,5 @@
 
 source 'https://rubygems.org'
 
-ruby "3.1.2"
+gem "lively", "~> 0.3"
 
-gem "lively"

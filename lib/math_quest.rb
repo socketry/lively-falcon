@@ -60,12 +60,12 @@ class MathQuest < Live::View
 		end
 	end
 	
-	def initialize(id, **data)
-		data[:level] ||= 0
-		data[:time] ||= 60
-		data[:score] ||= 0
-		
+	def initialize(...)
 		super
+		
+		@data[:level] ||= 0
+		@data[:time] ||= 60
+		@data[:score] ||= 0
 		
 		@update = nil
 		@equation = nil
@@ -88,7 +88,7 @@ class MathQuest < Live::View
 			while true
 				task.sleep(1.0)
 				
-				self.replace!
+				self.update!
 			end
 		end
 	end
@@ -118,18 +118,18 @@ class MathQuest < Live::View
 	end
 	
 	def handle(event)
-		@answer = event.dig(:details, :value)
+		@answer = event.dig(:detail, :value)
 		
 		if @equation.correct?(@answer)
 			self.reset
 			self.score += 1
 			
-			self.replace!
+			self.update!
 		end
 	end
 	
 	def forward_value
-		"live.forward(#{JSON.dump(@id)}, event, {action: 'change', value: event.target.value})"
+		"live.forwardEvent(#{JSON.dump(@id)}, event, {action: 'change', value: event.target.value})"
 	end
 	
 	def render(builder)

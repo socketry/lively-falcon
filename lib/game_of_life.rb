@@ -166,7 +166,7 @@ class GameOfLife < Live::View
 				task.sleep(1.0/5.0)
 				
 				@grid = @grid.step
-				self.replace!
+				self.update!
 			end
 		end
 	end
@@ -181,7 +181,7 @@ class GameOfLife < Live::View
 	def step
 		unless @update
 			@grid = @grid.step
-			self.replace!
+			self.update!
 		end
 	end
 	
@@ -215,7 +215,7 @@ class GameOfLife < Live::View
 	end
 	
 	def handle(event)
-		case event.dig(:details, :action)
+		case event.dig(:detail, :action)
 		when 'start'
 			self.start
 		when 'stop'
@@ -224,49 +224,49 @@ class GameOfLife < Live::View
 			self.step
 		when 'reset'
 			self.reset
-			self.replace!
+			self.update!
 		when 'set'
 			self.stop
-			x = event.dig(:details, :x).to_i
-			y = event.dig(:details, :y).to_i
+			x = event.dig(:detail, :x).to_i
+			y = event.dig(:detail, :y).to_i
 			@grid.toggle(x, y)
-			self.replace!
+			self.update!
 		when 'randomize'
 			self.randomize
-			self.replace!
+			self.update!
 		when 'love'
 			self.love
-			self.replace!
+			self.update!
 		end
 	end
 	
 	def forward_coordinate
-		"live.forward(#{JSON.dump(@id)}, event, {action: 'set', x: event.target.cellIndex, y: event.target.parentNode.rowIndex})"
+		"live.forwardEvent(#{JSON.dump(@id)}, event, {action: 'set', x: event.target.cellIndex, y: event.target.parentNode.rowIndex})"
 	end
 	
 	def render(builder)
 		builder.tag('p', {style: 'text-align: center'}) do
-			builder.inline('button', onclick: forward(action: 'start')) do
+			builder.inline('button', onclick: forward_event(action: 'start')) do
 				builder.text("Start")
 			end
 			
-			builder.inline('button', onclick: forward(action: 'stop')) do
+			builder.inline('button', onclick: forward_event(action: 'stop')) do
 				builder.text("Stop")
 			end
 			
-			builder.inline('button', onclick: forward(action: 'step')) do
+			builder.inline('button', onclick: forward_event(action: 'step')) do
 				builder.text("Step")
 			end
 			
-			builder.inline('button', onclick: forward(action: 'reset')) do
+			builder.inline('button', onclick: forward_event(action: 'reset')) do
 				builder.text("Reset")
 			end
 			
-			builder.inline('button', onclick: forward(action: 'randomize')) do
+			builder.inline('button', onclick: forward_event(action: 'randomize')) do
 				builder.text("Randomize")
 			end
 			
-			builder.inline('button', onclick: forward(action: 'love')) do
+			builder.inline('button', onclick: forward_event(action: 'love')) do
 				builder.text("Love")
 			end
 		end
