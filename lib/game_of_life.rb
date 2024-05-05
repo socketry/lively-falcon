@@ -139,11 +139,11 @@ class GameOfLife < Live::View
 		end
 	end
 	
-	def initialize(id, **data)
-		data[:width] ||= 33
-		data[:height] ||= 33
-		
+	def initialize(...)
 		super
+		
+		@data[:width] ||= 33
+		@data[:height] ||= 33
 		
 		self.reset
 		

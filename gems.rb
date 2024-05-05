@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-gem "lively", "~> 0.3"
-
+gem "lively", path: "../lively"
+gem "live", path: "../live"
