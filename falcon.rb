@@ -13,6 +13,6 @@ service "lively-falcon" do
 	end
 	
 	endpoint do
-		Async::HTTP::Endpoint.parse("http://0.0.0.0:#{port}").with(protocol: Async::HTTP::Protocol::HTTP11)
+		Async::HTTP::Endpoint.parse("http://localhost:#{port}").with(protocol: Async::HTTP::Protocol::HTTP11)
 	end
 end

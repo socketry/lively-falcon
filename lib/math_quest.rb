@@ -79,7 +79,10 @@ class MathQuest < Live::View
 	end
 	
 	def close
+		Console.warn(self, "Stopping...")
+		
 		self.stop
+		
 		super
 	end
 	
@@ -87,6 +90,8 @@ class MathQuest < Live::View
 		@update ||= Async do |task|
 			while true
 				task.sleep(1.0)
+				
+				Console.warn(self, "Updating...")
 				
 				self.update!
 			end

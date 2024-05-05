@@ -155,6 +155,8 @@ class GameOfLife < Live::View
 	end
 	
 	def close
+		Console.warn(self, "Stopping...")
+		
 		self.stop
 		
 		super
