@@ -1,11 +1,3 @@
-# Conway's Game of Life
+# Lively Falcon
 
-## Usage
-
-~~~ bash
-$ bundle install
-$ bundle exec ./falcon.rb
-~~~
-
-Visit <http://localhost:3000/>.
-
+All the demos in this repository have been moved to the examples directory of the [Lively](https://github.com/socketry/lively) gem.
